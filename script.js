@@ -3,27 +3,43 @@ getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
 
 const getSum = () => {
-    // Select all price elements
-    const prices = document.querySelectorAll(".price");
+//Add your code here
+  const prices = document.querySelectorAll('.price');
+
     let total = 0;
 
-    // Sum up the prices
     prices.forEach(price => {
-        total += parseFloat(price.innerText);
+
+        total += parseInt(price.textContent);
+
     });
 
-    // Create a new row for the total price
-    const table = document.querySelector("table");
-    const newRow = document.createElement("tr");
-    const newCell = document.createElement("td");
-    
-    // Set the cell to span two columns and display the total price
-    newCell.colSpan = 2; 
-    newCell.innerText = `Total Price: Rs ${total}`;
+    let totalRow = document.getElementById('ans');
 
-    // Append the cell to the new row and then append the row to the table
-    newRow.appendChild(newCell);
-    table.appendChild(newRow);
+    
+
+    if (!totalRow) {
+
+        totalRow = document.createElement('tr');
+
+        totalRow.setAttribute('id', 'ans');
+
+        const totalCell = document.createElement('td');
+
+        totalCell.setAttribute('colspan', '2');
+
+        totalCell.textContent = 'Total Price: Rs ' + total;
+
+        totalRow.appendChild(totalCell);
+
+        document.querySelector('table').appendChild(totalRow);
+
+    } else {
+
+        totalRow.querySelector('td').textContent = 'Total Price: Rs ' + total;
+
+    }
 };
 
 getSumBtn.addEventListener("click", getSum);
+
